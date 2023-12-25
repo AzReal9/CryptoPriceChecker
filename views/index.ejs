@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cryptocurrency Price Checker</title>
+    <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+    <h1 id="main-title">Cryptocurrency Price Checker</h1>
+    
+    <form action="/" method="POST">
+        <label for="coin">Enter Crypto Symbol:</label>
+        <input placeholder="(e.g., BTC-USD)" type="text" id="coin" name="coin" required oninput="this.value = this.value.toUpperCase()">
+        <button type="submit" id="submitButton">Get Price</button>
+    </form>
+
+    <% if (locals.error) { %>
+        <div id="errorTag" class="tag-error">
+            <p>Error: <%= locals.error %></p>
+        </div>
+    <% } else if (locals.data) { %>
+        <div id="priceContainer">
+            <h2 id="priceTitle">Price for <%= locals.data.symbol %></h2>
+            <p>Price in last 24 hours: <%= locals.data.price_24h %> USD</p>
+            <p>Volume in last 24 hours: <%= locals.data.volume_24h %></p>
+            <p>Last trade price: <%= locals.data.last_trade_price %> USD</p>
+        </div>
+    <% } %>
+</body>
+</html>
